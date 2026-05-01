@@ -1,0 +1,46 @@
+# Example query set for the retrieval debugger.
+#
+# The article's recommendation: pick your TEN MOST COMMON user queries
+# from real production usage. Don't make them up. The point of this
+# exercise is to inspect how the KB answers questions you actually
+# receive, not questions you wish you received.
+#
+# Each query supports an optional metadata_filter that gets passed
+# straight through to the Retrieve API. Useful when you want to verify
+# that a filter narrows results the way you expect.
+
+queries:
+  - query: How do I configure a Bedrock Knowledge Base?
+    expected_topic: Knowledge Base setup
+
+  - query: What are the differences between OpenSearch Serverless and S3 Vectors?
+    expected_topic: Vector store selection
+
+  - query: Show me how to do custom chunking
+    expected_topic: Custom chunking
+    # Filter to chunks marked as containing code — useful for "show me how" queries.
+    metadata_filter:
+      equals:
+        key: has_code
+        value: true
+
+  - query: What IAM permissions does a Knowledge Base role need?
+    expected_topic: IAM and security
+
+  - query: How do I trigger an ingestion job from the CLI?
+    expected_topic: Ingestion operations
+
+  - query: Why is my retrieval returning irrelevant chunks?
+    expected_topic: Retrieval quality troubleshooting
+
+  - query: What is the cost of OpenSearch Serverless for a small KB?
+    expected_topic: Pricing
+
+  - query: How do I encrypt my Knowledge Base with my own KMS key?
+    expected_topic: Encryption at rest
+
+  - query: What happens if an ingestion job fails halfway through?
+    expected_topic: Ingestion failure handling
+
+  - query: How do I debug poor retrieval quality?
+    expected_topic: Retrieval debugging
